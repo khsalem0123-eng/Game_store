@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GameZone - Games Store</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0b0b16;
+            color: white;
+        }
+
+        /* Navbar */
+        nav {
+            width: 100%;
+            background-color: #151528;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #7c4dff;
+        }
+
+        .logo span {
+            color: #00e5ff;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #00e5ff;
+        }
+
+        .cart {
+            background-color: #7c4dff;
+            padding: 10px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            padding: 80px 8%;
+            background:
+                linear-gradient(rgba(11,11,22,0.75), rgba(11,11,22,0.95)),
+                url("https://images.unsplash.com/photo-1542751371-adc38448a05e")
+                center/cover;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #00e5ff;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #cccccc;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #7c4dff;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #00e5ff;
+            color: black;
+            transform: scale(1.05);
+        }
+
+        /* Sections */
+        section {
+            padding: 70px 8%;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .title h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .title p {
+            color: #aaa;
+        }
+
+        /* Games */
+        .games {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .game-card {
+            background-color: #161629;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid #252545;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            border-color: #7c4dff;
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .game-info {
+            padding: 20px;
+        }
+
+        .game-info h3 {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .game-info p {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            color: #00e5ff;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .buy {
+            display: block;
+            text-align: center;
+            background-color: #7c4dff;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .buy:hover {
+            background-color: #00e5ff;
+            color: black;
+        }
+
+        /* Categories */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .category {
+            background-color: #161629;
+            padding: 35px 20px;
+            text-align: center;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .category:hover {
+            background-color: #7c4dff;
+            transform: scale(1.05);
+        }
+
+        .category h3 {
+            margin-top: 15px;
+        }
+
+        .icon {
+            font-size: 45px;
+        }
+
+        /* About */
+        .about {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about img {
+            width: 50%;
+            border-radius: 20px;
+        }
+
+        .about-text {
+            width: 50%;
+        }
+
+        .about-text h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Contact */
+        .contact {
+            background-color: #151528;
+            text-align: center;
+        }
+
+        .contact p {
+            color: #aaa;
+            margin: 10px 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #080811;
+            text-align: center;
+            padding: 25px;
+            color: #777;
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .games,
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .games,
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .about {
+                flex-direction: column;
+            }
+
+            .about img,
+            .about-text {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Game<span>Zone</span></div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#games">Games</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <a href="#" class="cart">🛒 Cart</a>
+    </nav>
+
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Welcome to <span>GameZone</span>
+            </h1>
+
+            <p>
+                Discover the best games, exciting adventures,
+                and amazing gaming experiences all in one place.
+            </p>
+
+            <a href="#games" class="btn">
+                Explore Games
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Games -->
+    <section id="games">
+
+        <div class="title">
+            <h2>Popular Games</h2>
+            <p>Check out our most popular games</p>
+        </div>
+
+        <div class="games">
+
+            <div class="game-card">
+
+                <img src="https://images.unsplash.com/photo-1605899435973-ca2d1a8861cf">
+
+                <div class="game-info">
+                    <h3>Cyber Warrior</h3>
+
+                    <p>Action • Adventure</p>
+
+                    <div class="price">$39.99</div>
+
+                    <a href="#" class="buy">
+                        Buy Now
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="game-card">
+
+                <img src="https://images.unsplash.com/photo-1542751110-97427bbecf20">
+
+                <div class="game-info">
+                    <h3>Dark Battle</h3>
+
+                    <p>Action • Fighting</p>
+
+                    <div class="price">$29.99</div>
+
+                    <a href="#" class="buy">
+                        Buy Now
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="game-card">
+
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420">
+
+                <div class="game-info">
+                    <h3>Speed Racing</h3>
+
+                    <p>Racing • Sports</p>
+
+                    <div class="price">$24.99</div>
+
+                    <a href="#" class="buy">
+                        Buy Now
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="game-card">
+
+                <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8">
+
+                <div class="game-info">
+                    <h3>Galaxy Quest</h3>
+
+                    <p>Adventure • Sci-Fi</p>
+
+                    <div class="price">$34.99</div>
+
+                    <a href="#" class="buy">
+                        Buy Now
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Categories -->
+    <section id="categories">
+
+        <div class="title">
+
+            <h2>🎮 Categories</h2>
+
+            <p>Choose your favorite type of game</p>
+
+        </div>
+
+
+        <div class="categories">
+
+            <div class="category">
+                <div class="icon">⚔️</div>
+                <h3>Action</h3>
+            </div>
+
+            <div class="category">
+                <div class="icon">🏎️</div>
+                <h3>Racing</h3>
+            </div>
+
+            <div class="category">
+                <div class="icon">🧙</div>
+                <h3>Adventure</h3>
+            </div>
+
+            <div class="category">
+                <div class="icon">⚽</div>
+                <h3>Sports</h3>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About -->
+    <section id="about">
+
+        <div class="about">
+
+            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f">
+
+            <div class="about-text">
+
+                <h2>About GameZone</h2>
+
+                <p>
+                    GameZone is your ultimate destination for discovering
+                    amazing games and unforgettable gaming experiences.
+                </p>
+
+                <p>
+                    We offer different categories of games including
+                    Action, Racing, Adventure and Sports.
+                </p>
+
+                <a href="#games" class="btn">
+                    View Games
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+
+        <div class="title">
+
+            <h2>📩 Contact Us</h2>
+
+            <p>Have a question? Contact us!</p>
+
+        </div>
+
+        <p>📧 Email: k.hsalem0123@gmail.com</p>
+
+        <p>📱 Phone: 01093045499</p>
+
+        <p>📍 Egypt</p>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 GameZone | All Rights Reserved
+        </p>
+
+    </footer>
+
+</body>
+</html>
